@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Dotted, continuously animating border for individual comparison cells */
+.flow-cell {
+  border-style: dotted;
+  animation: flow-cell-border 4s linear infinite;
+}
+
+@keyframes flow-cell-border {
+  0% {
+    border-color: #22c55e; /* emerald */
+  }
+  33% {
+    border-color: #f97316; /* orange */
+  }
+  66% {
+    border-color: #0ea5e9; /* sky */
+  }
+  100% {
+    border-color: #22c55e;
+  }
+}
+
+/* React Flow cursor overrides for Ex6
+   Keep the cursor stable (default arrow) over the pane and edges so it
+   does not flicker between pan/grab and pointer while interacting. */
+.react-flow__pane,
+.react-flow__renderer,
+.react-flow__edge-path {
+  cursor: default !important;
+}
